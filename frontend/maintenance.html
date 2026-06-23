@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maintenance Guide - AutoElite</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="logo">AUTO <span>BL3A2L</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="cars.html">Cars</a></li>
+    <li><a href="search.html">Search</a></li>
+    <li><a href="compare.html">Compare</a></li>
+    <li><a href="dealerships.html">Dealers</a></li>
+    <li><a href="testdrive.html">Test Drive</a></li>
+    <li><a href="calculator.html">Calculator</a></li>
+    <li><a href="user-dashboard.html">Dashboard</a></li>
+    <li><a href="login.html">Login</a></li>
+  </ul>
+</nav>
+
+<section>
+  <div class="section-title">
+    <h2>Car <span>Maintenance Guide</span></h2>
+    <div class="gold-line"></div>
+  </div>
+
+  <div class="faq-container">
+    <div class="faq-item">
+      <button class="faq-question">
+        Oil Change Interval
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        Change your oil every 5,000 to 7,500 miles or every 6 months, whichever comes first. Use the recommended oil grade for your vehicle.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Tire Rotation & Alignment
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        Rotate tires every 5,000 to 7,500 miles to ensure even wear. Check wheel alignment annually or if you notice uneven tire wear.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Brake Inspection
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        Have your brakes inspected at least once a year. Replace brake pads when they wear down to 3mm or if you hear squeaking noises.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Battery Maintenance
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        Check battery terminals for corrosion. Most car batteries last 3-5 years. Test your battery annually, especially before winter.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Air Filter Replacement
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        Replace engine air filter every 15,000 to 30,000 miles. Cabin air filter should be replaced every 12,000 to 15,000 miles.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Coolant Flush
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        Flush and replace coolant every 30,000 miles or every 2-3 years. Check coolant level regularly and top up if needed.
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll(".faq-question").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const item = btn.parentElement;
+        item.classList.toggle("active");
+        document.querySelectorAll(".faq-item").forEach(other => {
+            if (other !== item) {
+                other.classList.remove("active");
+            }
+        });
+    });
+});
+</script>
+
+
+
+
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>Car Hub</h4>
+          <p>
+            Your trusted partner in finding the perfect car. Browse, compare,
+            and explore with ease.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="cars.html">Browse Cars</a></li>
+            <li><a href="compare.html">Compare</a></li>
+            <li><a href="dealerships.html">Dealers</a></li>
+            <li><a href="testdrive.html">Test Drive</a></li>
+            <li><a href="calculator.html">Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="maintenance.html">Maintenance</a></li>
+            <li><a href="insurance.html">Insurance</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>More</h4>
+          <ul>
+            <li><a href="brochures.html">Brochures</a></li>
+            <li><a href="prices.html">Price Updates</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="upcoming.html">Upcoming Cars</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Car Hub. All rights reserved.</p>
+      </div>
+    </footer>
+
+
+
+    
+</body>
+</html>

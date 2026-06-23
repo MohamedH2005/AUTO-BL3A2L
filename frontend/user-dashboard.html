@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard - AutoElite</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+      <div class="logo">AUTO <span>BL3A2L</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="cars.html">Cars</a></li>
+    <li><a href="search.html">Search</a></li>
+    <li><a href="compare.html">Compare</a></li>
+    <li><a href="dealerships.html">Dealers</a></li>
+    <li><a href="testdrive.html">Test Drive</a></li>
+    <li><a href="calculator.html">Calculator</a></li>
+    <li><a href="user-dashboard.html">Dashboard</a></li>
+    <li><a href="login.html">Login</a></li>
+  </ul>
+</nav>
+
+<section>
+  <div class="section-title">
+    <h2>User <span>Dashboard</span></h2>
+    <div class="gold-line"></div>
+  </div>
+
+  <div class="dealers-grid" style="margin-top: 30px;">
+    <div class="dealer-card">
+      <h3>📅 My Bookings</h3>
+      <p id="myBookingsCount" style="font-size: 2rem; color: #c0a060; font-weight: bold;">0</p>
+      <p>Test drive bookings</p>
+    </div>
+
+    <div class="dealer-card">
+      <h3>❤️ Favorites</h3>
+      <p id="myFavoritesCount" style="font-size: 2rem; color: #c0a060; font-weight: bold;">0</p>
+      <p>Saved cars</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 40px;">
+    <h3 style="margin-bottom: 20px;">My Test Drive Bookings</h3>
+    <div id="userBookings">
+      <p style="color: #888;">No bookings yet</p>
+    </div>
+  </div>
+</section>
+
+<script src="auth.js"></script>
+<script src="script.js"></script>
+<script>
+  protectPage();
+
+  function loadUserData() {
+    const currentUser = getCurrentUser();
+    if (!currentUser) return;
+
+    const userBookings = getUserBookings();
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    document.getElementById("myBookingsCount").textContent = userBookings.length;
+    document.getElementById("myFavoritesCount").textContent = favorites.length;
+
+    const bookingsDiv = document.getElementById("userBookings");
+    if (userBookings.length === 0) {
+      bookingsDiv.innerHTML = '<p style="color: #888;">No bookings yet</p>';
+    } else {
+      bookingsDiv.innerHTML = userBookings.map(booking => `
+        <div class="dealer-card" style="margin-bottom: 15px;">
+          <p><strong>Car:</strong> ${booking.carName}</p>
+          <p><strong>Date:</strong> ${booking.date} at ${booking.time}</p>
+          <p><strong>Phone:</strong> ${booking.phone}</p>
+          <small style="color: #888;">Booked on: ${new Date(booking.createdAt).toLocaleDateString()}</small>
+        </div>
+      `).join("");
+    }
+  }
+
+  loadUserData();
+  updateNavbar();
+
+  initializeUsers();
+</script>
+
+
+
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>Car Hub</h4>
+          <p>
+            Your trusted partner in finding the perfect car. Browse, compare,
+            and explore with ease.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="cars.html">Browse Cars</a></li>
+            <li><a href="compare.html">Compare</a></li>
+            <li><a href="dealerships.html">Dealers</a></li>
+            <li><a href="testdrive.html">Test Drive</a></li>
+            <li><a href="calculator.html">Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="maintenance.html">Maintenance</a></li>
+            <li><a href="insurance.html">Insurance</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>More</h4>
+          <ul>
+            <li><a href="brochures.html">Brochures</a></li>
+            <li><a href="prices.html">Price Updates</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="upcoming.html">Upcoming Cars</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Car Hub. All rights reserved.</p>
+      </div>
+    </footer>
+
+
+
+    
+</body>
+</html>

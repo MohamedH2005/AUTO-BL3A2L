@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel - AutoElite</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="logo">AUTO <span>BL3A2L</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="cars.html">Cars</a></li>
+    <li><a href="search.html">Search</a></li>
+    <li><a href="compare.html">Compare</a></li>
+    <li><a href="dealerships.html">Dealers</a></li>
+    <li><a href="testdrive.html">Test Drive</a></li>
+    <li><a href="calculator.html">Calculator</a></li>
+    <li><a href="user-dashboard.html">Dashboard</a></li>
+    <li><a href="login.html">Login</a></li>
+  </ul>
+</nav>
+
+<section>
+  <div class="section-title">
+    <h2>Admin <span>Panel</span></h2>
+    <div class="gold-line"></div>
+  </div>
+
+  <div class="dealers-grid">
+    <div class="dealer-card">
+      <h3>👥 Users</h3>
+      <p id="usersCount" style="font-size: 2rem; color: #c0a060; font-weight: bold;">0</p>
+      <p>Registered users</p>
+    </div>
+
+    <div class="dealer-card">
+      <h3>🚗 Cars</h3>
+      <p style="font-size: 2rem; color: #c0a060; font-weight: bold;">7</p>
+      <p>Total vehicles</p>
+    </div>
+
+    <div class="dealer-card">
+      <h3>📅 Bookings</h3>
+      <p id="bookingsCount" style="font-size: 2rem; color: #c0a060; font-weight: bold;">0</p>
+      <p>Test drive bookings</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 40px;">
+    <h3 style="margin-bottom: 20px;">Registered Users</h3>
+    <div style="overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; background: #1a1a1a;">
+        <thead>
+          <tr style="background: #2a2a2a;">
+            <th style="padding: 12px; text-align: left; color: #c0a060;">ID</th>
+            <th style="padding: 12px; text-align: left; color: #c0a060;">Name</th>
+            <th style="padding: 12px; text-align: left; color: #c0a060;">Email</th>
+            <th style="padding: 12px; text-align: left; color: #c0a060;">Type</th>
+          </tr>
+        </thead>
+        <tbody id="usersTable">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="margin-top: 40px;">
+    <h3 style="margin-bottom: 20px;">Test Drive Bookings</h3>
+    <div style="overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; background: #1a1a1a;">
+        <thead>
+          <tr style="background: #2a2a2a;">
+            <th style="padding: 12px; text-align: left; color: #c0a060;">ID</th>
+            <th style="padding: 12px; text-align: left; color: #c0a060;">Car</th>
+            <th style="padding: 12px; text-align: left; color: #c0a060;">Name</th>
+            <th style="padding: 12px; text-align: left; color: #c0a060;">Email</th>
+            <th style="padding: 12px; text-align: left; color: #c0a060;">Date</th>
+            <th style="padding: 12px; text-align: left; color: #c0a060;">Time</th>
+          </tr>
+        </thead>
+        <tbody id="bookingsTable">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="margin-top: 60px;">
+    <div class="section-title">
+      <h2>Dealer <span>Dashboard</span></h2>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="dealers-grid">
+      <div class="dealer-card">
+        <h3>🏪 Total Dealers</h3>
+        <p id="dealersCount" style="font-size: 2rem; color: #c0a060; font-weight: bold;">0</p>
+        <p>Registered dealers</p>
+      </div>
+
+      <div class="dealer-card">
+        <h3>🚗 Dealer Cars</h3>
+        <p id="dealerCarsCount" style="font-size: 2rem; color: #c0a060; font-weight: bold;">0</p>
+        <p>Total dealer vehicles</p>
+      </div>
+
+      <div class="dealer-card">
+        <h3>💰 Dealer Revenue</h3>
+        <p id="dealerRevenue" style="font-size: 2rem; color: #c0a060; font-weight: bold;">EGP 0</p>
+        <p>This month</p>
+      </div>
+
+      <div class="dealer-card">
+        <h3>📈 Sales Performance</h3>
+        <p id="salesPerformance" style="font-size: 2rem; color: #c0a060; font-weight: bold;">0%</p>
+        <p>Growth rate</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <h3 style="margin-bottom: 20px;">Registered Dealers</h3>
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; background: #1a1a1a;">
+          <thead>
+            <tr style="background: #2a2a2a;">
+              <th style="padding: 12px; text-align: left; color: #c0a060;">ID</th>
+              <th style="padding: 12px; text-align: left; color: #c0a060;">Dealer Name</th>
+              <th style="padding: 12px; text-align: left; color: #c0a060;">Email</th>
+              <th style="padding: 12px; text-align: left; color: #c0a060;">Location</th>
+              <th style="padding: 12px; text-align: left; color: #c0a060;">Cars</th>
+              <th style="padding: 12px; text-align: left; color: #c0a060;">Status</th>
+            </tr>
+          </thead>
+          <tbody id="dealersTable">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px; display: flex; gap: 20px;">
+      <button onclick="addNewDealer()" style="background: #c0a060; color: #000; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer; font-weight: bold;">Add New Dealer</button>
+      <input type="file" id="excelFileInput" accept=".xlsx, .xls" style="display: none;" onchange="importFromExcel(event)">
+      <button onclick="document.getElementById('excelFileInput').click()" style="background: #007bff; color: #fff; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer; font-weight: bold;">Import from Excel</button>
+      <button onclick="exportToExcel()" style="background: #217346; color: #fff; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer; font-weight: bold;">Export to Excel</button>
+      <button onclick="exportDealerReport()" style="background: #2a2a2a; color: #c0a060; border: 1px solid #c0a060; padding: 12px 24px; border-radius: 5px; cursor: pointer;">Export Report</button>
+      <button onclick="refreshDealerData()" style="background: #333; color: #fff; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer;">Refresh Data</button>
+    </div>
+  </div>
+</section>
+
+<script src="auth.js"></script>
+<script>
+  protectAdminPage();
+
+  // Initialize dealer data from localStorage or use sample data
+  function getDealers() {
+    const savedDealers = localStorage.getItem('dealers');
+    if (savedDealers) {
+      return JSON.parse(savedDealers);
+    } else {
+      const sampleDealers = [
+        { id: 1, name: "AutoElite Cairo", email: "cairo@autoelite.com", location: "Cairo - Maadi", cars: 45, status: "Active", revenue: 15000000 },
+        { id: 2, name: "AutoElite Alexandria", email: "alex@autoelite.com", location: "Alexandria - Stanley", cars: 32, status: "Active", revenue: 12000000 },
+        { id: 3, name: "AutoElite Giza", email: "giza@autoelite.com", location: "Giza - Pyramid", cars: 28, status: "Active", revenue: 8500000 },
+        { id: 4, name: "AutoElite New Cairo", email: "newcairo@autoelite.com", location: "New Cairo", cars: 15, status: "Pending", revenue: 3200000 }
+      ];
+      localStorage.setItem('dealers', JSON.stringify(sampleDealers));
+      return sampleDealers;
+    }
+  }
+
+  let dealers = getDealers();
+
+  function loadAdminData() {
+    const users = getUsers();
+    const bookings = getBookings();
+
+    document.getElementById("usersCount").textContent = users.length;
+    document.getElementById("bookingsCount").textContent = bookings.length;
+
+    const usersTable = document.getElementById("usersTable");
+    usersTable.innerHTML = users.map(user => `
+      <tr style="border-bottom: 1px solid #333;">
+        <td style="padding: 12px; color: #fff;">${user.id}</td>
+        <td style="padding: 12px; color: #fff;">${user.name}</td>
+        <td style="padding: 12px; color: #fff;">${user.email}</td>
+        <td style="padding: 12px; color: ${user.type === 'admin' ? '#c0a060' : '#fff'};">${user.type}</td>
+      </tr>
+    `).join("");
+
+    const bookingsTable = document.getElementById("bookingsTable");
+    bookingsTable.innerHTML = bookings.map(booking => `
+      <tr style="border-bottom: 1px solid #333;">
+        <td style="padding: 12px; color: #fff;">${booking.id}</td>
+        <td style="padding: 12px; color: #fff;">${booking.carName}</td>
+        <td style="padding: 12px; color: #fff;">${booking.name}</td>
+        <td style="padding: 12px; color: #fff;">${booking.email}</td>
+        <td style="padding: 12px; color: #fff;">${booking.date}</td>
+        <td style="padding: 12px; color: #fff;">${booking.time}</td>
+      </tr>
+    `).join("");
+
+    loadDealerData();
+  }
+
+  function loadDealerData() {
+    // Update dealer statistics
+    document.getElementById("dealersCount").textContent = dealers.length;
+    
+    const totalCars = dealers.reduce((sum, dealer) => sum + dealer.cars, 0);
+    document.getElementById("dealerCarsCount").textContent = totalCars;
+    
+    const totalRevenue = dealers.reduce((sum, dealer) => sum + dealer.revenue, 0);
+    document.getElementById("dealerRevenue").textContent = `EGP ${(totalRevenue / 1000000).toFixed(1)}M`;
+    
+    const growthRate = 15; // Sample growth rate
+    document.getElementById("salesPerformance").textContent = `${growthRate}%`;
+
+    // Update dealers table
+    const dealersTable = document.getElementById("dealersTable");
+    dealersTable.innerHTML = dealers.map(dealer => `
+      <tr style="border-bottom: 1px solid #333;">
+        <td style="padding: 12px; color: #fff;">${dealer.id}</td>
+        <td style="padding: 12px; color: #fff;">${dealer.name}</td>
+        <td style="padding: 12px; color: #fff;">${dealer.email}</td>
+        <td style="padding: 12px; color: #fff;">${dealer.location}</td>
+        <td style="padding: 12px; color: #fff;">${dealer.cars}</td>
+        <td style="padding: 12px;">
+          <select onchange="updateDealerStatus(${dealer.id}, this.value)" 
+                  style="background: ${dealer.status === 'Active' ? '#4CAF50' : '#FFA500'}; 
+                         color: white; 
+                         border: none; 
+                         padding: 5px; 
+                         border-radius: 3px; 
+                         cursor: pointer;">
+            <option value="Active" ${dealer.status === 'Active' ? 'selected' : ''}>Active</option>
+            <option value="Pending" ${dealer.status === 'Pending' ? 'selected' : ''}>Pending</option>
+            <option value="Inactive" ${dealer.status === 'Inactive' ? 'selected' : ''}>Inactive</option>
+          </select>
+        </td>
+      </tr>
+    `).join("");
+  }
+
+  function addNewDealer() {
+    const name = prompt("Enter dealer name:");
+    if (!name) return;
+    
+    const email = prompt("Enter dealer email:");
+    if (!email) return;
+    
+    const location = prompt("Enter dealer location:");
+    if (!location) return;
+
+    const newDealer = {
+      id: dealers.length + 1,
+      name: name,
+      email: email,
+      location: location,
+      cars: 0,
+      status: "Pending",
+      revenue: 0
+    };
+
+    dealers.push(newDealer);
+    localStorage.setItem('dealers', JSON.stringify(dealers));
+    loadDealerData();
+    alert("Dealer added successfully!");
+  }
+
+  function exportDealerReport() {
+    let report = "Dealer Report\n";
+    report += "================\n\n";
+    report += `Total Dealers: ${dealers.length}\n`;
+    report += `Total Cars: ${dealers.reduce((sum, dealer) => sum + dealer.cars, 0)}\n`;
+    report += `Total Revenue: EGP ${dealers.reduce((sum, dealer) => sum + dealer.revenue, 0).toLocaleString()}\n\n`;
+    
+    report += "Dealer Details:\n";
+    report += "---------------\n";
+    dealers.forEach(dealer => {
+      report += `\n${dealer.name}\n`;
+      report += `Email: ${dealer.email}\n`;
+      report += `Location: ${dealer.location}\n`;
+      report += `Cars: ${dealer.cars}\n`;
+      report += `Status: ${dealer.status}\n`;
+      report += `Revenue: EGP ${dealer.revenue.toLocaleString()}\n`;
+    });
+
+    // Create downloadable file
+    const blob = new Blob([report], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'dealer_report.txt';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+  function updateDealerStatus(dealerId, newStatus) {
+    const dealerIndex = dealers.findIndex(d => d.id === dealerId);
+    if (dealerIndex !== -1) {
+      dealers[dealerIndex].status = newStatus;
+      localStorage.setItem('dealers', JSON.stringify(dealers));
+      loadDealerData();
+      alert(`Dealer status updated to ${newStatus}`);
+    }
+  }
+
+  function importFromExcel(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        
+        // Get first worksheet
+        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+        
+        // Convert to JSON
+        const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+        
+        // Skip header row and process data
+        const newDealers = [];
+        for (let i = 1; i < jsonData.length; i++) {
+          const row = jsonData[i];
+          if (row[0]) { // Check if row has data
+            newDealers.push({
+              id: parseInt(row[0]) || i,
+              name: row[1] || 'Unknown',
+              email: row[2] || 'no-email@example.com',
+              location: row[3] || 'Unknown',
+              cars: parseInt(row[4]) || 0,
+              status: row[5] || 'Pending',
+              revenue: parseFloat(row[6]) || 0
+            });
+          }
+        }
+
+        // Update dealers array and save to localStorage
+        dealers = newDealers;
+        localStorage.setItem('dealers', JSON.stringify(dealers));
+        
+        // Refresh the table
+        loadDealerData();
+        
+        alert(`Successfully imported ${newDealers.length} dealers from Excel!`);
+        
+        // Clear file input
+        document.getElementById('excelFileInput').value = '';
+        
+      } catch (error) {
+        alert('Error reading Excel file. Please make sure it has the correct format: ID, Dealer Name, Email, Location, Cars, Status, Revenue');
+        console.error(error);
+      }
+    };
+    
+    reader.readAsArrayBuffer(file);
+  }
+
+  function exportToExcel() {
+    // Create worksheet data
+    const wsData = [
+      ['ID', 'Dealer Name', 'Email', 'Location', 'Cars', 'Status', 'Revenue (EGP)'],
+      ...dealers.map(dealer => [
+        dealer.id,
+        dealer.name,
+        dealer.email,
+        dealer.location,
+        dealer.cars,
+        dealer.status,
+        dealer.revenue
+      ])
+    ];
+
+    // Create worksheet
+    const ws = XLSX.utils.aoa_to_sheet(wsData);
+
+    // Create workbook
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Dealers');
+
+    // Generate filename with current date
+    const today = new Date().toISOString().split('T')[0];
+    const filename = `dealers_report_${today}.xlsx`;
+
+    // Save file
+    XLSX.writeFile(wb, filename);
+  }
+
+  function refreshDealerData() {
+    // Reload data from localStorage
+    dealers = getDealers();
+    loadDealerData();
+    alert("Dealer data refreshed from storage!");
+  }
+
+  loadAdminData();
+  updateNavbar();
+
+  initializeUsers();
+</script>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>Car Hub</h4>
+          <p>
+            Your trusted partner in finding the perfect car. Browse, compare,
+            and explore with ease.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="cars.html">Browse Cars</a></li>
+            <li><a href="compare.html">Compare</a></li>
+            <li><a href="dealerships.html">Dealers</a></li>
+            <li><a href="testdrive.html">Test Drive</a></li>
+            <li><a href="calculator.html">Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="maintenance.html">Maintenance</a></li>
+            <li><a href="insurance.html">Insurance</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>More</h4>
+          <ul>
+            <li><a href="brochures.html">Brochures</a></li>
+            <li><a href="prices.html">Price Updates</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="upcoming.html">Upcoming Cars</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Car Hub. All rights reserved.</p>
+      </div>
+    </footer>
+
+</body>
+</html>
